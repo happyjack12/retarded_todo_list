@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel, Field
 
 
@@ -13,3 +15,6 @@ class TaskRead(BaseModel):
     class Config:
         from_attributes = True
 
+class TaskUpdate(BaseModel):
+    title: Optional[str] = Field(None, min_length=1)
+    category: Optional[str] = Field(None, min_length=1)
