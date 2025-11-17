@@ -2,15 +2,20 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 
+from datetime import datetime
 
-class TaskCreate(BaseModel):
-    title: str = Field(..., min_length=1)
-    category: str = Field(..., min_length=1)
-
-class TaskRead(BaseModel):
-    id: int
+class TaskBase(BaseModel):
     title: str
     category: str
+
+class TaskCreate(TaskBase):
+    pass
+
+class TaskRead(TaskBase):
+    id: int
+    user_id: int
+    is_active: bool
+    created_at: datetime
 
     class Config:
         from_attributes = True
