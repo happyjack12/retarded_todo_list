@@ -8,6 +8,7 @@ import os
 from dotenv import load_dotenv
 
 import app.models.task
+import app.models.user
 
 from app.core.config import get_settings
 from app.db.base import Base

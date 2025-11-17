@@ -12,5 +12,5 @@ def put_task(db: Session, task_data: TaskCreate) -> Optional[Task]:
     db.add(db_task)
     db.commit()
     db.refresh(db_task)
-    return db_task
+    return task_data
 

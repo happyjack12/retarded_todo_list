@@ -1,4 +1,5 @@
-from sqlalchemy import Boolean, Column, DateTime, Integer, String, func
+from sqlalchemy import Boolean, Column, DateTime, Integer, String, func, ForeignKey
+from sqlalchemy.orm import relationship
 
 from app.db.base import Base
 
@@ -12,3 +13,5 @@ class Task(Base):
     is_active = Column(Boolean, nullable=False, default=True)
     created_at = Column(DateTime(timezone=True), server_default=func.now(), nullable=False)
 
+    user_id = Column(Integer, ForeignKey("users.id"))
+    owner = relationship("User", back_populates="tasks")
