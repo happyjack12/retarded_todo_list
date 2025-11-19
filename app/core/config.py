@@ -15,7 +15,7 @@ class Settings(BaseSettings):
 
     jwt_secret_key: str
     jwt_algorithm: str = "HS256"
-    access_token_expire_minutes: int = 30
+    access_token_expire_minutes: int = 600
 
     log_destination: Literal["stdout", "file", "both"] = "stdout"
     log_file_path: str | None = None

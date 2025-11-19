@@ -8,7 +8,7 @@ from app.api.deps import get_current_user
 from app.models.user import User
 
 from app.schemas.task import TaskRead, TaskCreate
-from app.service.task.get_task import get_all_tasks, get_task_by_id, get_tasks_by_category, search_tasks_by_title
+from app.service.task.get_task_by_category import return_task_by_category
 
 logger = logging.getLogger(__name__)
 router = APIRouter(tags=["TASKS"], prefix="/tasks") 
@@ -20,5 +20,5 @@ def get_by_category(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ) -> List[TaskRead]:
-    tasks = get_tasks_by_category(db, category, user_id=current_user.id)
+    tasks = return_task_by_category(db, category, user_id=current_user.id)
     return tasks

@@ -8,7 +8,7 @@ from app.api.deps import get_current_user
 from app.models.user import User
 
 from app.schemas.task import TaskRead, TaskCreate
-from app.service.task.get_task import get_all_tasks, get_task_by_id, get_tasks_by_category, search_tasks_by_title
+from app.service.task.get_task_by_id import return_task_by_id
 
 logger = logging.getLogger(__name__)
 router = APIRouter(tags=["TASKS"], prefix="/tasks") 
@@ -20,7 +20,7 @@ def get_by_id(
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)
 ) -> TaskRead:
-    task = get_task_by_id(db, task_id, user_id=current_user.id) 
+    task = return_task_by_id(db, task_id, user_id=current_user.id) 
 
     if not task:
         raise HTTPException(
