@@ -28,7 +28,7 @@ def upgrade():
     )
     op.create_index(op.f('ix_tasks_id'), 'tasks', ['id'], unique=False)
     op.create_index(op.f('ix_tasks_title'), 'tasks', ['title'], unique=True)
-    op.drop_table('users')
+    # Удалена ошибочная команда: op.drop_table('users')
     # ### end Alembic commands ###
 
 
